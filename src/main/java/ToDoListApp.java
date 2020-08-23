@@ -2,7 +2,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 
 public class ToDoListApp  {
@@ -12,6 +14,14 @@ public class ToDoListApp  {
     private ToDoListApp() {
     }
 
+    public static void main(String[] args) {
+        Set<Driver> drivers = new HashSet<>();
+        drivers.add(new Driver(2));
+        Car car1 = new Car(2,new Engine(2),drivers);
+        ToDoListApp listApp = ToDoListApp.getInstance();
+        listApp.save(car1);
+
+    }
     public static ToDoListApp getInstance() {
         return toDoListApp;
     }
@@ -25,7 +35,10 @@ public class ToDoListApp  {
             return rsl;
         } catch (final Exception e) {
             session.getTransaction().rollback();
-            e.getMessage();
+            System.out.println(tx.getStatus());
+            System.out.println(e.getMessage());
+           // e.printStackTrace();
+           // System.out.println("MESSAGE");
         } finally {
             session.close();
         }
@@ -33,7 +46,7 @@ public class ToDoListApp  {
     }
 
 
-    public <T> T save(T car) {
+    public <E> E save(E car) {
         return this.tx(session -> {
             session.save(car);
             return car;

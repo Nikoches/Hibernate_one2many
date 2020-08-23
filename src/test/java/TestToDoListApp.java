@@ -13,6 +13,5 @@ public class TestToDoListApp {
         Set<Driver> drivers = new HashSet<>();
         drivers.add(new Driver(0));
         car.setDrivers(drivers);
-        listApp.save(car);
     }
 }
