@@ -98,5 +98,4 @@
             <version>5.4.16.Final</version>
         </dependency>
     </dependencies>
-    <packaging>war</packaging>
 </project>

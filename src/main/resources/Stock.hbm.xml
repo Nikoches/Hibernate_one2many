@@ -14,7 +14,7 @@
            <id name="id" type="int" column="id">
        </id>
            <many-to-one name="engine" class="Engine" column="engine_id" fetch="select" />
-           <set name="drivers" table="history_owner" inverse="true" lazy="true" fetch="select">
+           <set name="drivers" table="history_owner" inverse="true"  fetch="select">
                <key>
                    <column name="driver_id" not-null="true" />
                </key>

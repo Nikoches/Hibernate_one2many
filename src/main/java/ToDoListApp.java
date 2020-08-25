@@ -14,14 +14,6 @@ public class ToDoListApp  {
     private ToDoListApp() {
     }
 
-    public static void main(String[] args) {
-        Set<Driver> drivers = new HashSet<>();
-        drivers.add(new Driver(2));
-        Car car1 = new Car(2,new Engine(2),drivers);
-        ToDoListApp listApp = ToDoListApp.getInstance();
-        listApp.save(car1);
-
-    }
     public static ToDoListApp getInstance() {
         return toDoListApp;
     }
@@ -37,8 +29,6 @@ public class ToDoListApp  {
             session.getTransaction().rollback();
             System.out.println(tx.getStatus());
             System.out.println(e.getMessage());
-           // e.printStackTrace();
-           // System.out.println("MESSAGE");
         } finally {
             session.close();
         }
@@ -54,9 +44,9 @@ public class ToDoListApp  {
     }
 
 
-//    public <T> T findByid(Integer id) {
-//        return this.tx(session -> session.get(Car.class, id));
-//    }
+    public <E> E findByid(Integer id,Class<E> cl) {
+        return this.tx(session -> session.get(cl, id));
+    }
 
 
     public <T> T update(T item) {
